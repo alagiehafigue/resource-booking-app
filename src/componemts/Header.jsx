@@ -12,7 +12,7 @@ function Header() {
       <Link to="/" className="intro-header__logo">LOGO</Link>
       <nav className="intro-header__nav">
         <Link to="/" className="intro-header__link">HOME</Link>
-        <Link to="/about" className="intro-header__link">ABOUT</Link>
+        <Link to="/Admin" className="intro-header__link">ABOUT</Link>
       </nav>
       <div className="intro-header__right">
         <button type="button" className="intro-header__login">Login to portal</button>

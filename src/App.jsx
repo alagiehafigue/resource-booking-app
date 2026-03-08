@@ -4,6 +4,7 @@ import Header from './componemts/Header';
 import Footer from './componemts/footer';
 import ResourceCard from './componemts/ResourceCard';
 import './App.css';
+// import AdminStack from '../Stacks/AdminStack';
 
 function App() {
   const [isAuthenticated] = useState(true);
@@ -21,7 +22,7 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    
       <div className="app">
         <Header />
         <main>
@@ -33,7 +34,7 @@ function App() {
         </main>
         <Footer />
       </div>
-    </BrowserRouter>
+      
   );
 }
 
