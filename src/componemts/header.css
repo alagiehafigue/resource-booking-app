@@ -1,0 +1,122 @@
+.intro-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: #fff;
+  color: #1a237e;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.intro-header__logo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a237e;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+
+.intro-header__nav {
+  display: none;
+  gap: 2rem;
+}
+
+.intro-header__link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+
+.intro-header__link:hover {
+  color: #fff;
+}
+
+.intro-header__right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.intro-header__login {
+  display: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a237e;
+  background: #e8eaf6;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+}
+
+.intro-header__login:hover {
+  background: #c5cae9;
+}
+
+.intro-header__icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: #1a237e;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.intro-header__icon-btn:hover {
+  background: rgba(26, 35, 126, 0.08);
+}
+
+.intro-header__icon-btn svg {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.intro-header__icon-btn--user {
+  display: flex;
+}
+
+.intro-header__icon-btn--menu {
+  display: flex;
+}
+
+/* Desktop: dark blue header, show nav and login, hide icons */
+@media (min-width: 768px) {
+  .intro-header {
+    padding: 1rem 2rem;
+    background: #1a237e;
+    color: #fff;
+  }
+
+  .intro-header__logo {
+    color: #fff;
+  }
+
+  .intro-header__nav {
+    display: flex;
+  }
+
+  .intro-header__login {
+    display: block;
+  }
+
+  .intro-header__icon-btn {
+    color: #fff;
+  }
+
+  .intro-header__icon-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .intro-header__icon-btn--user,
+  .intro-header__icon-btn--menu {
+    display: none;
+  }
+}

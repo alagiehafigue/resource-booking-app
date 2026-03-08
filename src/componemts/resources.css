@@ -1,0 +1,146 @@
+/* Resource card */
+.resource-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s;
+}
+
+.resource-card:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.resource-card__image-wrap {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: #e0e0e0;
+}
+
+.resource-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.resource-card__badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.resource-card__badge--available {
+  background: #2e7d32;
+}
+
+.resource-card__badge--unavailable {
+  background: #c62828;
+}
+
+.resource-card__body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.resource-card__title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a237e;
+  line-height: 1.3;
+}
+
+.resource-card__description {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.resource-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.resource-card__meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.resource-card__icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  color: #1a237e;
+}
+
+.resource-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.resource-card__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s, background 0.2s;
+}
+
+.resource-card__btn--secondary {
+  color: #1a237e;
+  background: #e8eaf6;
+}
+
+.resource-card__btn--secondary:hover {
+  background: #c5cae9;
+}
+
+.resource-card__btn--primary {
+  color: #fff;
+  background: #3949ab;
+}
+
+.resource-card__btn--primary:hover {
+  background: #303f9f;
+}
+
+.resource-card__btn-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.resource-card__hint {
+  font-size: 0.85rem;
+  color: #757575;
+  font-style: italic;
+}
