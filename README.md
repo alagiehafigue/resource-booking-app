@@ -6,6 +6,7 @@ This project proposes a web-based campus resource booking system that allows stu
 2.Sackey Abraham: intropage, Booking Approvals
 3.Gyawu-Aboagye Obiri: Settings, Logout-confirmation page,Change Password- Change-Password Confirmation
 4.Addo Yaw Fosu-Adjei: Admin Notification
+5.Prince: SignIn , SignOut
 
 ##Technologies used
 -React
