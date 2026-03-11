@@ -1,0 +1,366 @@
+/* ── Reset & base ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ────────────────────────────
+   DESKTOP — split layout
+──────────────────────────────*/
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  background: #fff;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ── LEFT — image + text overlay ── */
+.left {
+  flex: 0 0 50%;
+  min-height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 40px 300px;
+
+  /* dark overlay so text is readable */
+  isolation: isolate;
+}
+
+.left::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 20, 50, 0.52);
+  z-index: 0;
+}
+
+/* ensure children sit above overlay */
+.left > * {
+  position: relative;
+  z-index: 1;
+}
+
+.left h2 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 28px;
+  line-height: 1.25;
+  letter-spacing: -0.3px;
+}
+
+/* bullet list */
+.left ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.left ul li {
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding-left: 32px;
+  position: relative;
+}
+
+/* custom white circle bullet */
+.left ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+/* ── RIGHT — form panel ── */
+.right {
+  flex: 0 0 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 56px 56px;
+  background: #ffffff;
+  min-height: 100vh;
+  box-shadow: -8px 0 40px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Header ── */
+.head {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.head h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+}
+
+.head small {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* ── Form ── */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Field ── */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #222;
+}
+
+/* ── Input wrapper (input + icon) ── */
+.inputWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+  padding: 13px 44px 13px 16px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #222;
+  background: #fafafa;
+  outline: none;
+  appearance: none; /* removes default select arrow */
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input::placeholder {
+  color: #bbb;
+}
+
+.input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+  background: #fff;
+}
+
+/* ── Right icons ── */
+.iconRight {
+  position: absolute;
+  right: 14px;
+  width: 20px;
+  height: 20px;
+  color: #aaa;
+  pointer-events: none;
+}
+
+/* ── Checkbox row ── */
+.check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.check input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #c0c0c0;
+  border-radius: 4px;
+  accent-color: #4f46e5;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.check label {
+  font-size: 0.875rem;
+  color: #4f46e5;
+  cursor: pointer;
+}
+
+/* ── Sign Up button ── */
+.button {
+  width: 100%;
+  padding: 15px;
+  background: #4f46e5;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 18px rgba(79, 70, 229, 0.35);
+}
+
+.button:hover:not(:disabled) {
+  background: #4338ca;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(79, 70, 229, 0.45);
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* ── Auth footer ── */
+.authFooter {
+  font-size: 0.875rem;
+  color: #666;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.authFooter a {
+  color: #4f46e5;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.authFooter a:hover {
+  color: #4338ca;
+  text-decoration: underline;
+}
+
+/* ── Card shell — only active on mobile ── */
+.card {
+  display: contents;
+}
+
+/* ────────────────────────────
+   MOBILE — card layout
+──────────────────────────────*/
+@media (max-width: 768px) {
+  /* Grey page background */
+  .wrapper {
+    background: #f0f0f0;
+    align-items: flex-start;
+    padding: 52px 20px 48px;
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: center;
+    min-height: unset;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  /* Hide image panel */
+  .left {
+    display: none;
+  }
+
+  /* Right: transparent shell, no padding */
+  .right {
+    flex: unset;
+    width: 100%;
+    padding: 0;
+    box-shadow: none;
+    background: transparent;
+    min-height: unset;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Heading sits above the card */
+  .head {
+    text-align: center;
+    margin-bottom: 24px;
+    width: 100%;
+  }
+
+  .head h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #111;
+    letter-spacing: -0.5px;
+  }
+
+  .head small {
+    font-size: 0.875rem;
+    color: #999;
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* White rounded card */
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 28px 24px 24px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.07);
+    gap: 0;
+  }
+
+  .form {
+    gap: 16px;
+    width: 100%;
+  }
+
+  .input {
+    background: #fff;
+    border: 1.5px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 12px 44px 12px 14px;
+    font-size: 0.9rem;
+  }
+
+  .button {
+    padding: 15px;
+    font-size: 1rem;
+    margin-top: 4px;
+  }
+
+  .authFooter {
+    margin-top: 14px;
+    padding-bottom: 4px;
+
+    /* bottom divider line visible in mobile design */
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 16px;
+  }
+}
+
