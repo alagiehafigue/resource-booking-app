@@ -11,7 +11,7 @@ createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <Routes>
         <Route path="/*" element={<AuthStack />} />
-        <Route path="/App" element={<App />} />
+        <Route path="/App/*" element={<App />} />
         <Route path="/Admin" element={<AdminStack />} />
       </Routes>
     </BrowserRouter>

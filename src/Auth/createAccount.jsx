@@ -15,6 +15,7 @@ const CreateAccount = () => {
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   //function that handles change in form data
   const handleChange = (e) => {
@@ -49,7 +50,7 @@ const CreateAccount = () => {
     setLoading(true);
     setError("");
     try {
-      const response = fetch(
+      const response = await fetch(
         "https://resource-booking-backend.onrender.com/api/auth/register",
         {
           method: "POST",
@@ -64,10 +65,13 @@ const CreateAccount = () => {
         },
       );
 
-      const data = await response.json;
+      const data = await response.json();
+      console.log(data);
 
       if (response.ok) {
-        useNavigate().navigate("/App");
+        navigate("/");
+      } else if (response.status === 409) {
+        setError("Account already exists");
       } else setError(data.message || "something went wrong");
     } catch (err) {
       setError("Could not connect to Server");
@@ -103,6 +107,7 @@ const CreateAccount = () => {
             <h2>Create Account</h2>
             <small>Join our resource booking system</small>
           </div>
+          {error && <p className={styles.error}>{error}</p>}
           <form className={styles.form}>
             {/* full name */}
             <label htmlFor="name">Full name</label>
@@ -162,7 +167,7 @@ const CreateAccount = () => {
               <label htmlFor="check">I agree to terms and conditions</label>
             </div>
             <button className={styles.button} onClick={handleSubmit}>
-              Create Account
+              {loading ? "Creating Account..." : "Create Account"}
             </button>
           </form>
         </div>
