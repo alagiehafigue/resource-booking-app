@@ -13,7 +13,6 @@ const CreateAccount = () => {
     password: "",
     // confirmPassword: "",
     check: false,
-    role: "",
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -37,8 +36,8 @@ const CreateAccount = () => {
     if (
       !formData.name ||
       !formData.password ||
-      !formData.email ||
-      !formData.role
+      !formData.email 
+
     ) {
       setError("Please fill in all fields.");
       return;
@@ -63,7 +62,7 @@ const CreateAccount = () => {
             name: formData.name,
             email: formData.email,
             password: formData.password,
-            role: formData.role,
+          
           }),
         },
       );
@@ -71,9 +70,9 @@ const CreateAccount = () => {
       const data = await response.json();
 
       if (response.ok) {
-        navigate("/App");
+        navigate("/login");
       } else setError(data.message || "something went wrong");
-    } catch (err) {
+    } catch {
       setError("Could not connect to Server");
     } finally {
       setLoading(false);
@@ -167,24 +166,7 @@ const CreateAccount = () => {
             </div>
 
             {/* Role */}
-            <div className={styles.field}>
-              <label htmlFor="role">Role</label>
-              <div className={styles.inputWrap}>
-                <select
-                  id="role"
-                  className={styles.input}
-                  value={formData.role}
-                  onChange={handleChange}
-                >
-                  <option value="">Student</option>
-                  <option value="student">Student</option>
-                  <option value="admin">Admin</option>
-                </select>
-                <svg className={styles.iconRight} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-              </div>
-            </div>
+            
 
             {/* checkbox */}
             <div className={styles.check}>

@@ -4,8 +4,9 @@ import Header from '../componemts/Header';
 import ResourceCard from '../componemts/ResourceCard';
 import Footer from '../componemts/footer';
 import './intropage.css';
+import { API_BASE } from '../config/api';
 
-const API_BASE = 'https://resource-booking-backend.onrender.com';
+
 const INITIAL_RESOURCE_COUNT = 6;
 const CATEGORIES = [
   { label: 'ICT Labs', slug: 'ict-labs', match: ['lab', 'ict', 'computer'] },
@@ -57,7 +58,7 @@ function Intropage() {
       try {
         setLoading(true);
         setError(null);
-        const res = await fetch(`${API_BASE}/api/resources`);
+        const res = await fetch(`${API_BASE}/resources`);
         if (!res.ok) throw new Error('Failed to load resources');
         const data = await res.json();
         const list = Array.isArray(data) ? data : data.resources || data.data || [];
@@ -246,7 +247,7 @@ function Intropage() {
           <Link to="/signup" className="intro-cta__link">Create account</Link>
           {' '}and get started
         </p>
-        <Link to="/signup" className="intro-cta__btn">
+        <Link to="/" className="intro-cta__btn">
           Explore resources
         </Link>
       </section>

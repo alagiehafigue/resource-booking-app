@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
+import LOGO from "../assets/LOGO.png";
 
 /**
  * Header for intropage.
@@ -15,7 +16,8 @@ function Header() {
   return (
     <>
       <header className="intro-header">
-        <Link to="/" className="intro-header__logo">LOGO</Link>
+        <img src={LOGO} className="intro-header__logo" />
+        {/* <Link to="/" className="intro-header__logo">LOGO</Link> */}
         <nav className="intro-header__nav">
           <Link to="/" className="intro-header__link">HOME</Link>
           <Link to="/about" className="intro-header__link">ABOUT</Link>

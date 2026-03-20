@@ -13,9 +13,9 @@ function Footer() {
         <div className="footer__column">
           <h3 className="footer__heading">Resources</h3>
           <ul className="footer__list">
-            <li><Link to="/resources?category=auditoriums" className="footer__link">Auditoriums</Link></li>
-            <li><Link to="/resources?category=ict-labs" className="footer__link">I.C.T labs</Link></li>
-            <li><Link to="/resources?category=class" className="footer__link">Class</Link></li>
+            <li><Link to="" className="footer__link">Auditoriums</Link></li>
+            <li><Link to="" className="footer__link">I.C.T labs</Link></li>
+            <li><Link to="" className="footer__link">Class</Link></li>
           </ul>
         </div>
         <div className="footer__column">

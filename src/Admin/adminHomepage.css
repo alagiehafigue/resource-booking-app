@@ -1,0 +1,190 @@
+.ah-root {
+  --navy: #0d1f3c;
+  --navy-2: #162d52;
+  --blue: #2563eb;
+  --blue-2: #1d4ed8;
+  --bg: #f3f4f6;
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --text: #0f172a;
+  --muted: #6b7280;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "DM Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+.ah-topbar {
+  height: 56px;
+  background: var(--navy);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+.ah-topbar__left {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.ah-topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.ah-chip {
+  font-size: 0.9rem;
+  opacity: 0.95;
+}
+.ah-admin {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92rem;
+  opacity: 0.95;
+}
+.ah-admin svg {
+  width: 18px;
+  height: 18px;
+}
+
+.ah-main {
+  display: flex;
+  justify-content: center;
+  padding: 26px 16px 60px;
+}
+.ah-page {
+  width: 100%;
+  max-width: 940px;
+}
+.ah-title h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+.ah-title p {
+  margin: 6px 0 18px;
+  color: var(--muted);
+}
+
+.ah-tabs {
+  display: flex;
+  gap: 18px;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 18px;
+}
+.ah-tab {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 10px 2px 12px;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  position: relative;
+}
+.ah-tab--active {
+  color: var(--blue);
+}
+.ah-tab--active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--blue);
+  border-radius: 2px 2px 0 0;
+}
+
+.ah-content {
+  display: flex;
+  justify-content: center;
+}
+
+.ah-admin-wrap {
+  position: relative; /* ← makes menu position relative to this */
+}
+
+.ah-admin {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: inherit;
+}
+
+.ah-admin-menu {
+  position: absolute;
+  top: calc(100% + 8px); /* ← appears just below the button */
+  right: 0;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  min-width: 180px;
+  z-index: 200;
+  overflow: hidden;
+}
+
+.ah-admin-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #374151;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.ah-admin-menu__item:hover {
+  background: #f3f4f6;
+}
+
+.ah-admin-menu__icon {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.ah-admin-menu__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ah-admin-menu__item--logout {
+  color: #dc2626;
+  border-top: 1px solid #f3f4f6;
+}
+
+.ah-admin-menu__item--logout:hover {
+  background: #fee2e2;
+}
+
+@media (max-width: 520px) {
+  .ah-topbar {
+    padding: 0 16px;
+  }
+  .ah-tabs {
+    gap: 10px;
+  }
+  .ah-tab {
+    font-size: 0.92rem;
+  }
+}
+
