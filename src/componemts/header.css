@@ -6,9 +6,14 @@
   background: #fff;
   border-top: 3px solid #1a237e;
   border-bottom: 3px solid #1a237e;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .intro-header__logo {
+  width:80px;
+  height:50px ;
   font-size: 1.25rem;
   font-weight: 700;
   color: #1a237e;

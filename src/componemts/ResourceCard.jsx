@@ -6,7 +6,7 @@ import './resources.css';
  * availability badge, and action buttons (Follow direction, Book Resource).
  * When not authenticated, Book Resource alerts user to create account and redirects to signup.
  */
-function ResourceCard({ resource, isAuthenticated, isAdmin = false }) {
+function ResourceCard({ resource, isAuthenticated, isAdmin = false, onDelete = () => {} }) {
   const navigate = useNavigate();
   const { id, image, name, location, capacity, description, available = true } = resource;
 
@@ -86,6 +86,22 @@ function ResourceCard({ resource, isAuthenticated, isAdmin = false }) {
               Book Resource
             </button>
           )}
+        {/* Delete button — only visible to admin */}
+          {isAdmin && onDelete && (
+            <button
+              type="button"
+              className="resource-card__btn resource-card__btn--danger"
+              onClick={onDelete}
+            >
+              <svg className="resource-card__btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="3 6 5 6 21 6" />
+                <path d="M19 6l-1 14H6L5 6" />
+                <path d="M10 11v6M14 11v6" />
+                <path d="M9 6V4h6v2" />
+              </svg>
+              Delete
+            </button>
+          )}  
         </div>
       </div>
     </article>

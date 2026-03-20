@@ -2,10 +2,11 @@ import styles from "./signIn.module.css";
 import SigninSvg from "../assets/Signin.svg";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { API_BASE } from "../config/api";
 
 const Index = () => {
   //variables for the data to be sent to backend
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -14,19 +15,46 @@ const Index = () => {
 
   //function to handle signin
   const handleSignIn = async () => {
-    setLoading(true);
-    setError("");
+  setLoading(true);
+  setError("");
 
-    //sending data to backend
-    // try{
-    //     response = await fetch()
-    // }
+  try {
+    const response = await fetch(`${API_BASE}/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: email.trim(), password: password.trim() }),
+      credentials: "include"
+    });
 
-    // For now, go straight to user homepage
-     setLoading(false);
-    navigate("/home");
-   
-  };
+    const data = await response.json();
+
+    if (response.ok) {
+      // Save token and user info to localStorage
+     
+      localStorage.setItem("user_name", data.user.name);
+      localStorage.setItem("user_role", data.user.role);
+
+      // Redirect based on role
+      if (data.user.role === "admin") {
+        localStorage.setItem("admin_name", data.user.name);
+        navigate("/Admin", {replace: true});
+      } else {
+        navigate("/home", {replace: true}); // student goes to user homepage
+      }
+    } else if(response.status ===429) {
+      setError("Too many attemps. Please wai a few minutes, and try again ");
+    } else if(response.status === 401){
+      setError ("Incorrect email or password. Please try again")
+
+    }else {
+      setError(data.message || "Invalid email or password")
+    }
+  } catch {
+    setError("Could not connect to server. Try again.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className={styles.wrapper}>
@@ -55,19 +83,21 @@ const Index = () => {
             }}
           >
             <div className={styles.field}>
-              <label htmlFor="username">Username</label>
+              <label htmlFor="email">Email</label>
               <div className={styles.inputWrap}>
                 <input
-                  type="text"
-                  id="username"
+                 type="email"
+                  id="email"
                   className={styles.input}
-                  placeholder="Enter your name"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+              />
+              
                 <svg className={styles.iconRight} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                  <circle cx="12" cy="7" r="4" />
+                    <path d="M4 4h16v16H4z" opacity="0" />
+                    <path d="M4 8l8 5 8-5" />
+                    <path d="M4 8v12h16V8" />
                 </svg>
               </div>
             </div>

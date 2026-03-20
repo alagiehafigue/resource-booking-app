@@ -2,9 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ResourceCard from '../componemts/ResourceCard';
 import Footer from '../componemts/footer';
-import './intropage.css';
+import '../Pages/intropage.css';
 import { API_BASE } from '../config/api';
-import LOGO from "../assets/LOGO.png";
 
 
 const INITIAL_RESOURCE_COUNT = 6;
@@ -45,14 +44,15 @@ function normalizeResource(apiResource) {
   };
 }
 
-function UserHomepage() {
+function ResourceAvailable() {
+
   const [resources, setResources] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [showAllResources, setShowAllResources] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const adminName = localStorage.getItem("admin_name") || "Admin";
 
   useEffect(() => {
     async function fetchResources() {
@@ -62,9 +62,12 @@ function UserHomepage() {
         const res = await fetch(`${API_BASE}/resources`);
         if (!res.ok) throw new Error('Failed to load resources');
         const data = await res.json();
+        console.log("Data:", data);
         const list = Array.isArray(data) ? data : data.resources || data.data || [];
+        console.log("List:", list)
         setResources(list);
       } catch (err) {
+        console.assert("error:", err);
         setError(err.message || 'Could not load resources');
         setResources([]);
       } finally {
@@ -100,65 +103,43 @@ function UserHomepage() {
   const hasMoreToShow =
     filteredResources.length > INITIAL_RESOURCE_COUNT && !showAllResources;
 
+
+const handleDelete = async (resourceId) => {
+  if (!window.confirm("Are you sure you want to delete this resource?")) return;
+  try {
+    const res = await fetch(`${API_BASE}/resources/${resourceId}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+    if (!res.ok) throw new Error("Failed to delete resource");
+    // Remove from state immediately without refetching
+    setResources((prev) => prev.filter((r) => r.resource_id !== resourceId));
+  } catch (err) {
+    alert(err.message || "Could not delete resource");
+  }
+};
+
   return (
     <div className="intropage">
       {/* User header with profile menu */}
-      <header className="user-header">
-        <img src={LOGO} className="user-header__logo" />
-        <div className="user-header__right">
-          <button
-            type="button"
-            className="user-header__profile-btn"
-            aria-label="Open profile menu"
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
+        <header className="ah-topbar">
+        <div className="ah-topbar__left">Resource management</div>
+        <div className="ah-topbar__right">
+          <span className="ah-chip">Resource available</span>
+          <span className="ah-admin">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              aria-hidden="true"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
             </svg>
-          </button>
-          {menuOpen && (
-            <div className="user-header__menu" role="menu">
-              <button type="button" className="user-header__menu-item">
-                <span className="user-header__menu-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                    <circle cx="12" cy="7" r="4" />
-                  </svg>
-                </span>
-                <span>View Profile</span>
-              </button>
-              <button type="button" className="user-header__menu-item">
-                <span className="user-header__menu-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="12" cy="12" r="3" />
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.65 1.65 0 0 0 15 19.4a1.65 1.65 0 0 0-1 .6 1.65 1.65 0 0 0-.33 1.82l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 8.6 15a1.65 1.65 0 0 0-1.82-.33l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 15 8.6a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 15z" />
-                  </svg>
-                </span>
-                <span>Settings</span>
-              </button>
-              <Link to="/login" className="user-header__menu-item user-header__menu-item--logout">
-                <span className="user-header__menu-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M10 17l5-5-5-5" />
-                    <path d="M15 12H3" />
-                    <path d="M21 19V5a2 2 0 0 0-2-2h-4" />
-                  </svg>
-                </span>
-                <span>Log Out</span>
-              </Link>
-            </div>
-          )}
+            {adminName}
+          </span>
         </div>
-      </header>
-
-      <section className="intro-hero">
-        <h1 className="intro-hero__title">Manage. Reserve. Simplify.</h1>
-        <p className="intro-hero__subtitle">
-          Book laboratories, seminar halls, and equipment effortlessly anytime, anywhere.
-        </p>
-        
-      </section>
+    </header>
 
       <section className="intro-resources">
         <div className="intro-resources__header">
@@ -268,6 +249,9 @@ function UserHomepage() {
                       key={r.resource_id}
                       resource={normalizeResource(r)}
                       isAuthenticated={true}
+                        isAdmin={true} 
+                         onDelete={() => handleDelete(r.resource_id)}
+
                     />
                   ))}
                 </div>
@@ -303,4 +287,4 @@ function UserHomepage() {
   );
 }
 
-export default UserHomepage;
+export default ResourceAvailable;

@@ -149,6 +149,12 @@
   font-style: italic;
 }
 
+.resource-card__btn--danger{
+  background-color: #f08f8f;
+  color: white;
+  margin: 1rem;
+}
+
 /* Laptop: tighter layout for 1024px–1440px */
 @media (min-width: 1024px) and (max-width: 1440px) {
   .resource-card__image-wrap {
