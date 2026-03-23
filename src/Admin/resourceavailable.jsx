@@ -3,7 +3,10 @@ import ResourceCard from '../componemts/ResourceCard';
 import ConfirmDialog from '../componemts/ConfirmDialog';
 import Footer from '../componemts/footer';
 import '../Pages/intropage.css';
+import './adminHomepage.css';
+import AdminTopbar from './components/AdminTopbar';
 import { apiFetch } from './components/adminApi';
+import { logoutSession } from '../Auth/authApi';
 
 const INITIAL_RESOURCE_COUNT = 6;
 const CATEGORIES = [
@@ -44,6 +47,7 @@ function ResourceAvailable() {
   const [showAllResources, setShowAllResources] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
   const [confirmState, setConfirmState] = useState(null);
+  const [logoutConfirmOpen, setLogoutConfirmOpen] = useState(false);
   const adminName = localStorage.getItem("admin_name") || "Admin";
 
   useEffect(() => {
@@ -114,24 +118,7 @@ function ResourceAvailable() {
 
   return (
     <div className="intropage">
-      <header className="ah-topbar">
-        <div className="ah-topbar__left">Resource management</div>
-        <div className="ah-topbar__right">
-          <span className="ah-chip">Resource available</span>
-          <span className="ah-admin">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              aria-hidden="true"
-            >
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            </svg>
-            {adminName}
-          </span>
-        </div>
-      </header>
+      <AdminTopbar adminName={adminName} onLogout={() => setLogoutConfirmOpen(true)} />
 
       <section className="intro-resources">
         <div className="intro-resources__header">
@@ -285,6 +272,16 @@ function ResourceAvailable() {
           setConfirmState(null);
         }}
         onCancel={() => setConfirmState(null)}
+      />
+      <ConfirmDialog
+        open={logoutConfirmOpen}
+        title="Log out from admin?"
+        message="You will leave the admin dashboard and need to sign in again to continue managing resources."
+        confirmLabel="Log Out"
+        cancelLabel="Stay Here"
+        tone="warning"
+        onConfirm={() => logoutSession()}
+        onCancel={() => setLogoutConfirmOpen(false)}
       />
     </div>
   );

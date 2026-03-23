@@ -61,6 +61,7 @@ export default function MyBookings() {
   const [banner, setBanner] = useState(location.state?.successMessage || '');
   const [actingId, setActingId] = useState(null);
   const [confirmState, setConfirmState] = useState(null);
+  const [unreadCount, setUnreadCount] = useState(0);
 
   const loadBookings = async () => {
     try {
@@ -79,6 +80,20 @@ export default function MyBookings() {
 
   useEffect(() => {
     loadBookings();
+  }, []);
+
+  useEffect(() => {
+    async function loadNotificationCount() {
+      try {
+        const data = await apiRequest('/notifications');
+        const list = Array.isArray(data) ? data : data?.notifications || [];
+        setUnreadCount(list.filter((item) => !item.read_status).length);
+      } catch {
+        setUnreadCount(0);
+      }
+    }
+
+    loadNotificationCount();
   }, []);
 
   const cancelBooking = async (bookingId) => {
@@ -126,6 +141,13 @@ export default function MyBookings() {
           <img src={LOGO} className="user-header__logo" />
         </Link>
         <div className="user-header__right">
+          <Link to="/notifications" className="user-header__bell" aria-label="Open notifications">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+            {unreadCount > 0 && <span className="user-header__badge">{unreadCount}</span>}
+          </Link>
           <button
             type="button"
             className="user-header__profile-btn"
@@ -158,6 +180,15 @@ export default function MyBookings() {
                   </svg>
                 </span>
                 <span>My Bookings</span>
+              </Link>
+              <Link to="/notifications" className="user-header__menu-item">
+                <span className="user-header__menu-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                  </svg>
+                </span>
+                <span>Notifications</span>
               </Link>
               <button
                 type="button"
