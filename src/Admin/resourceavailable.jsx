@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import ResourceCard from '../componemts/ResourceCard';
+import ConfirmDialog from '../componemts/ConfirmDialog';
 import Footer from '../componemts/footer';
 import '../Pages/intropage.css';
 import { apiFetch } from './components/adminApi';
@@ -42,6 +43,7 @@ function ResourceAvailable() {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [showAllResources, setShowAllResources] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
+  const [confirmState, setConfirmState] = useState(null);
   const adminName = localStorage.getItem("admin_name") || "Admin";
 
   useEffect(() => {
@@ -90,8 +92,6 @@ function ResourceAvailable() {
     filteredResources.length > INITIAL_RESOURCE_COUNT && !showAllResources;
 
   const handleDelete = async (resourceId) => {
-    if (!window.confirm("Are you sure you want to delete this resource?")) return;
-
     try {
       await apiFetch(`/resources/${resourceId}`, {
         method: "DELETE",
@@ -100,6 +100,16 @@ function ResourceAvailable() {
     } catch (err) {
       alert(err.message || "Could not delete resource");
     }
+  };
+
+  const askToDeleteResource = (resourceId, resourceName) => {
+    setConfirmState({
+      resourceId,
+      title: 'Delete this resource?',
+      message: `${resourceName} will be removed if there are no active bookings attached to it.`,
+      confirmLabel: 'Delete Resource',
+      cancelLabel: 'Keep Resource',
+    });
   };
 
   return (
@@ -231,7 +241,7 @@ function ResourceAvailable() {
                       resource={normalizeResource(r)}
                       isAuthenticated={true}
                       isAdmin={true}
-                      onDelete={() => handleDelete(r.resource_id)}
+                      onDelete={() => askToDeleteResource(r.resource_id, r.resource_name)}
                     />
                   ))}
                 </div>
@@ -263,6 +273,19 @@ function ResourceAvailable() {
       </section>
 
       <Footer />
+      <ConfirmDialog
+        open={Boolean(confirmState)}
+        title={confirmState?.title}
+        message={confirmState?.message}
+        confirmLabel={confirmState?.confirmLabel}
+        cancelLabel={confirmState?.cancelLabel}
+        tone="danger"
+        onConfirm={async () => {
+          await handleDelete(confirmState.resourceId);
+          setConfirmState(null);
+        }}
+        onCancel={() => setConfirmState(null)}
+      />
     </div>
   );
 }

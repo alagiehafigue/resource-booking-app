@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useParams, useNavigate, useLocation } from 'react-router-dom';
 import './booking.css';
 import { apiRequest } from '../Auth/authApi';
 import { getStoredSession } from '../Auth/session';
@@ -44,9 +44,9 @@ function normalizeResource(data, id) {
   if (!data) return null;
 
   const rawLocation = data.location || '';
-  const rawLocationName = data.location_name || '';
+  const rawLocationName = data.location_name || data.locationLabel || '';
   const locationUrl = isUrl(rawLocation) ? rawLocation : '';
-  const locationLabel = rawLocationName || (!locationUrl ? rawLocation : '');
+  const locationLabel = rawLocationName || (locationUrl ? 'Open location' : rawLocation);
 
   return {
     name: data.name || data.resource_name || `Resource #${id}`,
@@ -61,7 +61,7 @@ function Booking({ isAdmin = false }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const resourceFromState = location.state?.resource;
+  const resourceFromState = normalizeResource(location.state?.resource, id);
 
   const [resource, setResource] = useState(resourceFromState || null);
   const [loadingResource, setLoadingResource] = useState(!resourceFromState);
@@ -112,9 +112,12 @@ function Booking({ isAdmin = false }) {
         type: 'success',
         text: result.message || 'Booking created successfully - awaiting approval.',
       });
-      setDate('');
-      setTime('');
-      setDuration('');
+      navigate('/bookings', {
+        replace: true,
+        state: {
+          successMessage: result.message || 'Booking created successfully.',
+        },
+      });
     } catch (err) {
       setMessage({ type: 'error', text: err.message || 'Could not submit booking.' });
     } finally {
@@ -127,7 +130,7 @@ function Booking({ isAdmin = false }) {
   return (
     <div className="bp-root">
       <header className="bp-header">
-        <span className="bp-header__brand">Resource Booking</span>
+        <Link to="/home" className="bp-header__brand">Resource Booking</Link>
         <div className="bp-header__right">
           {isAdmin && (
             <span className="bp-badge bp-badge--admin">
@@ -149,6 +152,11 @@ function Booking({ isAdmin = false }) {
 
       <main className="bp-main">
         <div className="bp-panel">
+          <div className="bp-breadcrumbs">
+            <Link to="/home" className="bp-breadcrumbs__link">All Resources</Link>
+            <span className="bp-breadcrumbs__divider">/</span>
+            <span className="bp-breadcrumbs__current">{resourceName}</span>
+          </div>
           <div className="bp-resource-card">
             {loadingResource ? (
               <div className="bp-resource-card__skeleton" />
@@ -161,7 +169,11 @@ function Booking({ isAdmin = false }) {
                   </svg>
                 </div>
                 <div className="bp-resource-card__info">
-                  <p className="bp-resource-card__name">{resource.name}</p>
+                  <p className="bp-resource-card__name">
+                    <Link to="/home" className="bp-resource-card__home-link">
+                      {resource.name}
+                    </Link>
+                  </p>
                   <div className="bp-resource-card__meta">
                     {resource.location && (
                       <span className="bp-resource-card__meta-item">

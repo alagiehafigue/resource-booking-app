@@ -5,6 +5,7 @@ import UserHomepage from './Pages/userHomepage'
 import AuthStack from '../Stacks/AuthStack'
 import AdminStack from '../Stacks/AdminStack'
 import Booking from './Pages/Booking.jsx'
+import MyBookings from './Pages/MyBookings.jsx'
 import ResourceAvailable from './Admin/resourceavailable.jsx'
 import ProtectedRoute from './Auth/ProtectedRoute.jsx'
 
@@ -18,6 +19,7 @@ function App() {
         <Route element={<ProtectedRoute allowedRoles={["student", "faculty", "admin"]} />}>
           <Route path="/home" element={<UserHomepage />} />
           <Route path="/resource/:id" element={<Booking />} />
+          <Route path="/bookings" element={<MyBookings />} />
         </Route>
         <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
           <Route path="/admin/*" element={<AdminStack />} />

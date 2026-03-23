@@ -6,6 +6,7 @@ import "./adminHomepage.css";
 import AnalyticsBoard from "./components/analyticsBoard";
 import { useNavigate } from 'react-router-dom';
 import Footer from "../componemts/footer";
+import ConfirmDialog from "../componemts/ConfirmDialog";
 import { apiFetch } from "./components/adminApi";
 import { logoutSession } from "../Auth/authApi";
 
@@ -20,6 +21,7 @@ const Homepage = () => {
   const [activeTab, setActiveTab] = useState("approvals");
   const [notifications, setNotifications] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
   const adminName = useMemo(() => {
     const fromStorage =
@@ -138,7 +140,7 @@ const Homepage = () => {
                   className="ah-admin-menu__item ah-admin-menu__item--logout"
                   onClick={() => {
                     setMenuOpen(false);
-                    logoutSession();
+                    setConfirmOpen(true);
                   }}
                 >
                   <span className="ah-admin-menu__icon">
@@ -196,6 +198,16 @@ const Homepage = () => {
       </main>
 
       <Footer />
+      <ConfirmDialog
+        open={confirmOpen}
+        title="Log out from admin?"
+        message="You will leave the admin dashboard and need to sign in again to continue managing resources."
+        confirmLabel="Log Out"
+        cancelLabel="Stay Here"
+        tone="warning"
+        onConfirm={() => logoutSession()}
+        onCancel={() => setConfirmOpen(false)}
+      />
     </div>
   );
 };

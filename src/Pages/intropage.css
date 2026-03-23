@@ -32,6 +32,9 @@
 }
 
 .intro-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.7rem 1.75rem;
   font-size: 1rem;
   font-weight: 600;
@@ -45,6 +48,23 @@
 
 .intro-hero__cta:hover {
   background: #1b5e20;
+}
+
+.intro-hero__actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.intro-hero__cta--secondary {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #fff;
+}
+
+.intro-hero__cta--secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 /* Resources section */

@@ -1,0 +1,276 @@
+.mb-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f5f6f8;
+  color: #10213a;
+}
+
+.mb-main {
+  flex: 1;
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 56px;
+}
+
+.mb-hero {
+  background: #fff;
+  color: #10213a;
+  border-radius: 24px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.mb-eyebrow {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  opacity: 0.76;
+}
+
+.mb-hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+}
+
+.mb-hero p {
+  margin: 10px 0 0;
+  max-width: 640px;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.mb-hero__copy {
+  max-width: 700px;
+}
+
+.mb-hero__actions,
+.mb-card__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.mb-content {
+  margin-top: 24px;
+}
+
+.mb-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.mb-toolbar h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.mb-toolbar p {
+  margin: 6px 0 0;
+  color: #64748b;
+}
+
+.mb-banner {
+  border-radius: 18px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.mb-banner--success {
+  background: #ebfff4;
+  color: #0f7a44;
+  border: 1px solid #b7f1cf;
+}
+
+.mb-banner--error {
+  background: #fff1f2;
+  color: #be123c;
+  border: 1px solid #fecdd3;
+}
+
+.mb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+.mb-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 22px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+
+.mb-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.mb-card__label {
+  margin: 0 0 6px;
+  color: #64748b;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.mb-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #0f172a;
+}
+
+.mb-status {
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.mb-status--confirmed {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.mb-status--pending {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.mb-status--rejected,
+.mb-status--cancelled {
+  background: #ffe4e6;
+  color: #be123c;
+}
+
+.mb-status--default {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.mb-card__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.mb-card__meta span {
+  display: block;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.mb-card__meta strong {
+  display: block;
+  color: #1e293b;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.mb-location-link {
+  display: inline-flex;
+  align-items: center;
+  color: #173c7a;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.mb-location-link:hover {
+  text-decoration: underline;
+}
+
+.mb-empty {
+  background: #fff;
+  border: 1px dashed rgba(37, 99, 235, 0.24);
+  border-radius: 24px;
+  padding: 36px 24px;
+  text-align: center;
+  color: #475569;
+}
+
+.mb-empty h3 {
+  margin: 0 0 10px;
+  color: #0f172a;
+}
+
+.mb-empty p {
+  margin: 0 0 18px;
+}
+
+.mb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border-radius: 999px;
+  padding: 0 18px;
+  border: none;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.mb-btn:hover {
+  transform: translateY(-1px);
+}
+
+.mb-btn--primary {
+  background: #35d786;
+  color: #083321;
+}
+
+.mb-btn--ghost {
+  background: #fff;
+  color: #0c0950;
+  border: 1px solid rgba(23, 60, 122, 0.14);
+}
+
+.mb-btn--danger {
+  background: #e11d48;
+  color: #fff;
+}
+
+.mb-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (max-width: 760px) {
+  .mb-main {
+    width: min(100% - 24px, 1180px);
+    padding-top: 18px;
+  }
+
+  .mb-hero {
+    padding: 22px;
+    border-radius: 22px;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .mb-card__meta {
+    grid-template-columns: 1fr;
+  }
+}

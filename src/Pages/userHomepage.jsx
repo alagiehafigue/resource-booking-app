@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ResourceCard from '../componemts/ResourceCard';
+import ConfirmDialog from '../componemts/ConfirmDialog';
 import Footer from '../componemts/footer';
 import './intropage.css';
 import LOGO from "../assets/LOGO.png";
@@ -55,6 +56,7 @@ function UserHomepage() {
   const [showAllResources, setShowAllResources] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
   useEffect(() => {
     async function fetchResources() {
@@ -119,6 +121,26 @@ function UserHomepage() {
           </button>
           {menuOpen && (
             <div className="user-header__menu" role="menu">
+              <Link to="/home" className="user-header__menu-item">
+                <span className="user-header__menu-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M3 11l9-8 9 8" />
+                    <path d="M5 10v10h14V10" />
+                  </svg>
+                </span>
+                <span>All Resources</span>
+              </Link>
+              <Link to="/bookings" className="user-header__menu-item">
+                <span className="user-header__menu-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                </span>
+                <span>My Bookings</span>
+              </Link>
               <button type="button" className="user-header__menu-item">
                 <span className="user-header__menu-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -140,7 +162,7 @@ function UserHomepage() {
               <button
                 type="button"
                 className="user-header__menu-item user-header__menu-item--logout"
-                onClick={() => logoutSession()}
+                onClick={() => setConfirmOpen(true)}
               >
                 <span className="user-header__menu-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -161,7 +183,14 @@ function UserHomepage() {
         <p className="intro-hero__subtitle">
           Book laboratories, seminar halls, and equipment effortlessly anytime, anywhere.
         </p>
-        
+        <div className="intro-hero__actions">
+          <Link to="/bookings" className="intro-hero__cta">
+            View My Bookings
+          </Link>
+          <button type="button" className="intro-hero__cta intro-hero__cta--secondary" onClick={clearFilters}>
+            Show All Resources
+          </button>
+        </div>
       </section>
 
       <section className="intro-resources">
@@ -303,6 +332,16 @@ function UserHomepage() {
       </section>
 
       <Footer />
+      <ConfirmDialog
+        open={confirmOpen}
+        title="Log out now?"
+        message="You will be signed out of this account on the current browser."
+        confirmLabel="Log Out"
+        cancelLabel="Stay Here"
+        tone="warning"
+        onConfirm={() => logoutSession()}
+        onCancel={() => setConfirmOpen(false)}
+      />
     </div>
   );
 }

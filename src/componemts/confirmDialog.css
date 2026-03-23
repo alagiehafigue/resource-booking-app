@@ -1,0 +1,127 @@
+.confirm-dialog__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(6px);
+}
+
+.confirm-dialog {
+  width: min(100%, 440px);
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.2);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+.confirm-dialog__accent {
+  height: 6px;
+}
+
+.confirm-dialog__accent--danger {
+  background: linear-gradient(90deg, #fb7185, #e11d48);
+}
+
+.confirm-dialog__accent--warning {
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+}
+
+.confirm-dialog__accent--success {
+  background: linear-gradient(90deg, #4ade80, #16a34a);
+}
+
+.confirm-dialog__accent--default {
+  background: linear-gradient(90deg, #60a5fa, #2563eb);
+}
+
+.confirm-dialog__body {
+  padding: 26px 26px 18px;
+}
+
+.confirm-dialog__eyebrow {
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.confirm-dialog__body h3 {
+  margin: 0 0 10px;
+  font-size: 1.35rem;
+  color: #0f172a;
+}
+
+.confirm-dialog__message {
+  margin: 0;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.confirm-dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 0 26px 24px;
+}
+
+.confirm-dialog__cancel,
+.confirm-dialog__confirm {
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.confirm-dialog__cancel {
+  background: #eef2f7;
+  color: #334155;
+}
+
+.confirm-dialog__confirm {
+  color: #fff;
+}
+
+.confirm-dialog__confirm--danger {
+  background: #e11d48;
+}
+
+.confirm-dialog__confirm--success {
+  background: #16a34a;
+}
+
+.confirm-dialog__confirm--default {
+  background: #2563eb;
+}
+
+.confirm-dialog__cancel:hover,
+.confirm-dialog__confirm:hover {
+  transform: translateY(-1px);
+}
+
+.confirm-dialog__cancel:disabled,
+.confirm-dialog__confirm:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (max-width: 520px) {
+  .confirm-dialog__actions {
+    flex-direction: column-reverse;
+  }
+
+  .confirm-dialog__cancel,
+  .confirm-dialog__confirm {
+    width: 100%;
+  }
+}

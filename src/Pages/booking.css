@@ -44,6 +44,11 @@
           font-size: 1.05rem;
           font-weight: 600;
           letter-spacing: -.01em;
+          color: #fff;
+          text-decoration: none;
+        }
+        .bp-header__brand:hover {
+          text-decoration: underline;
         }
         .bp-header__right {
           display: flex;
@@ -83,6 +88,30 @@
           display: flex;
           flex-direction: column;
           gap: 20px;
+        }
+        .bp-breadcrumbs {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          color: var(--text-secondary);
+          font-size: .9rem;
+        }
+        .bp-breadcrumbs__link {
+          color: var(--blue);
+          font-weight: 600;
+          text-decoration: none;
+        }
+        .bp-breadcrumbs__link:hover {
+          text-decoration: underline;
+        }
+        .bp-breadcrumbs__divider {
+          opacity: .6;
+        }
+        .bp-breadcrumbs__current {
+          min-width: 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
 
         /* ── Resource Card ── */
@@ -127,6 +156,14 @@
           overflow: hidden;
           text-overflow: ellipsis;
           max-width: 100%;
+        }
+        .bp-resource-card__home-link {
+          color: var(--navy);
+          text-decoration: none;
+        }
+        .bp-resource-card__home-link:hover {
+          color: var(--blue);
+          text-decoration: underline;
         }
         .bp-resource-card__meta {
           display: flex;
