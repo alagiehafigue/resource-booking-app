@@ -1,0 +1,147 @@
+.us-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f5f6f8;
+  color: #10213a;
+}
+
+.us-main {
+  flex: 1;
+  width: min(980px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 56px;
+}
+
+.us-panel {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.us-eyebrow {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+.us-panel h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 2.6rem);
+}
+
+.us-copy {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.us-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.us-card,
+.us-section {
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 20px;
+  background: #fff;
+}
+
+.us-card span {
+  display: block;
+  margin-bottom: 10px;
+  color: #64748b;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.us-card strong {
+  color: #0f172a;
+}
+
+.us-section {
+  margin-top: 22px;
+}
+
+.us-section h2 {
+  margin: 0 0 10px;
+  font-size: 1.25rem;
+}
+
+.us-section--danger {
+  border-color: #fecdd3;
+  background: linear-gradient(180deg, #fff8f8 0%, #fff1f2 100%);
+}
+
+.us-danger-label {
+  margin: 0 0 10px;
+  color: #be123c;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.us-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.us-btn,
+.us-navlink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.us-btn:hover,
+.us-navlink:hover {
+  transform: translateY(-1px);
+}
+
+.us-btn--primary {
+  border: none;
+  background: #4f46e5;
+  color: #fff;
+}
+
+.us-btn--ghost,
+.us-navlink {
+  border: 1px solid rgba(23, 60, 122, 0.14);
+  background: #fff;
+  color: #0c0950;
+}
+
+.us-btn--danger {
+  border: none;
+  background: #dc2626;
+  color: #fff;
+}
+
+@media (max-width: 760px) {
+  .us-main {
+    width: min(100% - 24px, 980px);
+    padding-top: 18px;
+  }
+
+  .us-panel {
+    padding: 22px;
+  }
+}

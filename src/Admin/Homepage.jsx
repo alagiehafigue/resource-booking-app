@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import BookingApprovals from "./components/BookingApprovals";
 import CreateResource from "./components/CreateResource";
 import "./adminHomepage.css";
 import AnalyticsBoard from "./components/analyticsBoard";
-import Footer from "../componemts/footer";
-import ConfirmDialog from "../componemts/ConfirmDialog";
+import Footer from "../components/Footer";
+import ConfirmDialog from "../components/ConfirmDialog";
 import AdminTopbar from "./components/AdminTopbar";
 import { logoutSession } from "../Auth/authApi";
 
@@ -26,22 +26,25 @@ const Homepage = () => {
   }, []);
 
   return (
-    <div className="ah-root">
-      <AdminTopbar adminName={adminName} onLogout={() => setConfirmOpen(true)} />
+    <div className='ah-root'>
+      <AdminTopbar
+        adminName={adminName}
+        onLogout={() => setConfirmOpen(true)}
+      />
       <AnalyticsBoard />
 
-      <main className="ah-main">
-        <div className="ah-page">
-          <div className="ah-title">
+      <main className='ah-main'>
+        <div className='ah-page'>
+          <div className='ah-title'>
             <h1>Admin Panel</h1>
             <p>Manage resources and approve bookings</p>
           </div>
 
-          <nav className="ah-tabs" aria-label="Admin tabs">
+          <nav className='ah-tabs' aria-label='Admin tabs'>
             {TABS.map((t) => (
               <button
                 key={t.id}
-                type="button"
+                type='button'
                 className={`ah-tab ${activeTab === t.id ? "ah-tab--active" : ""}`}
                 onClick={() => setActiveTab(t.id)}
               >
@@ -50,13 +53,9 @@ const Homepage = () => {
             ))}
           </nav>
 
-          <section className="ah-content">
-            {activeTab === "approvals" && (
-              <BookingApprovals />
-            )}
-            {activeTab === "create" && (
-              <CreateResource />
-            )}
+          <section className='ah-content'>
+            {activeTab === "approvals" && <BookingApprovals />}
+            {activeTab === "create" && <CreateResource />}
           </section>
         </div>
       </main>
@@ -64,11 +63,11 @@ const Homepage = () => {
       <Footer />
       <ConfirmDialog
         open={confirmOpen}
-        title="Log out from admin?"
-        message="You will leave the admin dashboard and need to sign in again to continue managing resources."
-        confirmLabel="Log Out"
-        cancelLabel="Stay Here"
-        tone="warning"
+        title='Log out from admin?'
+        message='You will leave the admin dashboard and need to sign in again to continue managing resources.'
+        confirmLabel='Log Out'
+        cancelLabel='Stay Here'
+        tone='warning'
         onConfirm={() => logoutSession()}
         onCancel={() => setConfirmOpen(false)}
       />

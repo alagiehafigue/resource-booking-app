@@ -40,14 +40,15 @@
   font-weight: 600;
   color: #fff;
   background: #35D786;
-  border: none;
+  border: 1px solid #35D786;
   border-radius: 50px;
   cursor: pointer;
-  transition: background 0.2s;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .intro-hero__cta:hover {
-  background: #1b5e20;
+  border-color: #1b5e20;
 }
 
 .intro-hero__actions {
@@ -57,14 +58,16 @@
   flex-wrap: wrap;
 }
 
-.intro-hero__cta--secondary {
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.28);
+.intro-hero__cta--ghost {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid #35D786;
   color: #fff;
 }
 
-.intro-hero__cta--secondary:hover {
-  background: rgba(255, 255, 255, 0.2);
+.intro-hero__cta--ghost:hover {
+  background: transparent;
+  color: #35D786;
+  text-decoration: underline;
 }
 
 /* Resources section */

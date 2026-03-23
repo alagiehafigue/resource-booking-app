@@ -61,6 +61,15 @@ export async function logoutSession({ redirect = true } = {}) {
   }
 }
 
+export async function deleteAccountSession() {
+  try {
+    await apiRequest("/auth/delete-account", { method: "DELETE" }, true);
+  } finally {
+    clearSession();
+    redirectToLogin();
+  }
+}
+
 export async function apiRequest(path, options = {}, retrying = false) {
   const headers = new Headers(options.headers || {});
   if (!headers.has("Content-Type") && options.body) {
