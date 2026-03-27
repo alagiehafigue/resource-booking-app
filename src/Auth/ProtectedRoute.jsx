@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { refreshSession } from "./authApi";
 import { getStoredSession, isAllowedRole } from "./session";
+import { CenteredLoader } from "../components/PropagateLoader.stories";
 
 export default function ProtectedRoute({ allowedRoles = [] }) {
   const [status, setStatus] = useState("checking");
@@ -29,6 +30,6 @@ export default function ProtectedRoute({ allowedRoles = [] }) {
     };
   }, [allowedRoles]);
 
-  if (status === "checking") return null; // Or a spinner
+  if (status === "checking") return <CenteredLoader />;
   return status === "allowed" ? <Outlet /> : <Navigate to='/login' replace />;
 }
