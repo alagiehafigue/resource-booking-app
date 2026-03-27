@@ -5,6 +5,7 @@ import ResourceCard from "../components/ResourceCard";
 import Footer from "../components/Footer";
 import "./intropage.css";
 import { API_BASE } from "../config/api";
+import { CenteredLoader } from "../components/PropagateLoader.stories";
 
 const INITIAL_RESOURCE_COUNT = 6;
 const CATEGORIES = [
@@ -234,7 +235,9 @@ function Intropage() {
 
           <div className='intro-resources__main'>
             {loading && (
-              <p className='intro-resources__loading'>Loading resources…</p>
+              <p className='intro-resources__loading'>
+                <CenteredLoader />
+              </p>
             )}
             {error && <p className='intro-resources__error'>{error}</p>}
             {!loading && !error && displayedResources.length === 0 && (
