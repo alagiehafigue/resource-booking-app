@@ -1,5 +1,5 @@
 import { API_BASE } from "../config/api";
-import { clearSession } from "./session";
+import { clearSession, storeSession } from "./session";
 
 const AUTH_ERROR_STATUSES = new Set([401, 403]);
 
@@ -32,19 +32,26 @@ function redirectToLogin() {
 }
 
 export async function refreshSession() {
-  const res = await fetch(`${API_BASE}/auth/refresh`, {
-    method: "POST",
-    credentials: "include",
-  });
+  try {
+    const res = await fetch(`${API_BASE}/auth/refresh`, {
+      method: "POST",
+      credentials: "include",
+    });
 
-  if (!res.ok) {
-    clearSession();
+    if (!res.ok) {
+      clearSession();
+      return false;
+    }
+
+    const data = await res.json();
+    if (data?.user) {
+      storeSession(data.user); // This fills the tab's storage automatically
+    }
+    return true;
+  } catch {
     return false;
   }
-
-  return true;
 }
-
 export async function logoutSession({ redirect = true } = {}) {
   try {
     await fetch(`${API_BASE}/auth/logout`, {
