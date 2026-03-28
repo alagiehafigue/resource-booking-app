@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Intropage from "./Pages/Intropage.jsx";
 import UserHomepage from "./Pages/userHomepage.jsx";
 import AuthStack from "../Stacks/AuthStack.jsx";
-import AdminStack from "../Stacks/AdminStack.jx";
+import AdminStack from "../Stacks/AdminStack.jsx";
 import Booking from "./Pages/Booking.jsx";
 import MyBookings from "./Pages/MyBookings.jsx";
 import UserNotifications from "./Pages/UserNotifications.jsx";
