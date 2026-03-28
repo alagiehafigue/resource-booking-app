@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { FaGithub } from "react-icons/fa";
+
 import "./footer.css";
 
 /**
@@ -39,8 +41,13 @@ function Footer() {
               </Link>
             </li>
             <li>
-              <Link to='/blog' className='footer__link'>
-                Blog
+              <Link
+                to='https://github.com/alagiehafigue/resource-booking-app'
+                className='footer__link'
+                target='_blanck'
+              >
+                <FaGithub />
+                <p className='github-title'>Github</p>
               </Link>
             </li>
           </ul>
