@@ -1,17 +1,17 @@
 // App.jsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Intropage from "./Pages/Intropage";
-import UserHomepage from "./Pages/userHomepage";
-import AuthStack from "../Stacks/AuthStack";
-import AdminStack from "../Stacks/AdminStack";
+import Intropage from "./Pages/Intropage.jsx";
+import UserHomepage from "./Pages/userHomepage.jsx";
+import AuthStack from "../Stacks/AuthStack.jsx";
+import AdminStack from "../Stacks/AdminStack.jx";
 import Booking from "./Pages/Booking.jsx";
 import MyBookings from "./Pages/MyBookings.jsx";
 import UserNotifications from "./Pages/UserNotifications.jsx";
 import ResourceAvailable from "./Admin/resourceavailable.jsx";
 import UserProfile from "./Pages/UserProfile.jsx";
 import UserSettings from "./Pages/UserSettings.jsx";
-import About from "./pages/About";
-import Services from "./pages/Services";
+import About from "./pages/About.jsx";
+import Services from "./pages/Services.jsx";
 import ProtectedRoute from "./Auth/ProtectedRoute.jsx";
 
 function App() {
