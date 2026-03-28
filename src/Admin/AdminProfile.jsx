@@ -3,16 +3,14 @@ import Footer from "../components/Footer";
 import ConfirmDialog from "../components/ConfirmDialog";
 import AdminTopbar from "./components/AdminTopbar";
 import { logoutSession } from "../Auth/authApi";
+import { getStoredSession } from "../Auth/session";
 import "./adminHomepage.css";
 
 export default function AdminProfile() {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const adminName = useMemo(() => {
-    return (
-      localStorage.getItem("admin_name") ||
-      localStorage.getItem("user_name") ||
-      "Admin"
-    ).trim();
+    const session = getStoredSession();
+    return (session.name || "Admin").trim();
   }, []);
 
   return (

@@ -6,6 +6,7 @@ import ConfirmDialog from "../components/ConfirmDialog";
 import { apiRequest, logoutSession } from "../Auth/authApi";
 import { getStoredSession } from "../Auth/session";
 import "./myBookings.css";
+import { CenteredLoader } from "../components/PropagateLoader.stories";
 
 function formatDate(value) {
   if (!value) return "";
@@ -318,7 +319,9 @@ export default function MyBookings() {
           {error && <div className='mb-banner mb-banner--error'>{error}</div>}
 
           {loading ? (
-            <div className='mb-empty'>Loading your bookings...</div>
+            <div className='mb-empty'>
+              <CenteredLoader />
+            </div>
           ) : bookings.length === 0 ? (
             <div className='mb-empty'>
               <h3>No bookings yet</h3>
