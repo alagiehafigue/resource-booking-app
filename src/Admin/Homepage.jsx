@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import ConfirmDialog from "../components/ConfirmDialog";
 import AdminTopbar from "./components/AdminTopbar";
 import { logoutSession } from "../Auth/authApi";
+import { getStoredSession } from "../Auth/session";
 
 const TABS = [
   { id: "approvals", label: "Booking Approvals" },
@@ -18,11 +19,8 @@ const Homepage = () => {
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   const adminName = useMemo(() => {
-    const fromStorage =
-      localStorage.getItem("admin_name") ||
-      localStorage.getItem("adminName") ||
-      "";
-    return (fromStorage || "Admin").trim();
+    const session = getStoredSession();
+    return (session.name || "Admin").trim();
   }, []);
 
   return (
