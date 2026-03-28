@@ -10,8 +10,8 @@ import UserNotifications from "./Pages/UserNotifications.jsx";
 import ResourceAvailable from "./Admin/resourceavailable.jsx";
 import UserProfile from "./Pages/UserProfile.jsx";
 import UserSettings from "./Pages/UserSettings.jsx";
-import About from "./pages/About.jsx";
-import Services from "./pages/Services.jsx";
+import About from "./Pages/About.jsx";
+import Services from "./Pages/Services.jsx";
 import ProtectedRoute from "./Auth/ProtectedRoute.jsx";
 
 function App() {
