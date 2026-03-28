@@ -65,6 +65,11 @@
   transition: color 0.2s;
 }
 
+.github-title {
+  display: inline;
+  margin-left: 5px;
+}
+
 .footer__link:hover {
   color: #fff;
 }
