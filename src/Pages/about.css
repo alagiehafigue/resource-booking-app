@@ -1,0 +1,65 @@
+.about {
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.about__hero {
+  background: #002B56;
+  color: white;
+  text-align: center;
+  padding: 90px 20px 70px;
+}
+
+.about__hero h1 {
+  font-size: 42px;
+  margin-bottom: 15px;
+}
+
+.about__hero p {
+  font-size: 18px;
+  max-width: 700px;
+  margin: 0 auto 30px;
+}
+
+.about__homeBtn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: #2bd67b;
+  color: white;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.about__homeBtn:hover {
+  opacity: 0.9;
+}
+
+/* Content section */
+.about__content {
+  padding: 60px 10%;
+  background: #f7f9fb;
+}
+
+.about__block {
+  margin-bottom: 45px;
+}
+
+.about__block h2 {
+  color: #002B56;
+  margin-bottom: 12px;
+  font-size: 24px;
+}
+
+.about__block p,
+.about__block ul {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.7;
+}
+
+.about__block ul {
+  padding-left: 20px;
+}

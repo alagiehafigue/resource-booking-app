@@ -10,6 +10,7 @@ import UserNotifications from "./Pages/UserNotifications.jsx";
 import ResourceAvailable from "./Admin/resourceavailable.jsx";
 import UserProfile from "./Pages/UserProfile.jsx";
 import UserSettings from "./Pages/UserSettings.jsx";
+import About from "./pages/About";
 import Services from "./pages/Services";
 import ProtectedRoute from "./Auth/ProtectedRoute.jsx";
 
@@ -20,7 +21,9 @@ function App() {
         <Route path='/' element={<Intropage />} />
         <Route path='/login' element={<AuthStack />} />
         <Route path='/signup' element={<AuthStack />} />
+        <Route path='/about' element={<About />} />
         <Route path='/services' element={<Services />} />
+
         <Route
           element={
             <ProtectedRoute allowedRoles={["student", "faculty", "admin"]} />
