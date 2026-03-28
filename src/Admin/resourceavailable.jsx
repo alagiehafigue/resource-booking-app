@@ -8,6 +8,7 @@ import AdminTopbar from "./components/AdminTopbar";
 import { apiFetch } from "./components/adminApi";
 import { logoutSession } from "../Auth/authApi";
 import { CenteredLoader } from "../components/PropagateLoader.stories";
+import { getStoredSession } from "../Auth/session";
 
 const INITIAL_RESOURCE_COUNT = 6;
 const CATEGORIES = [
@@ -49,7 +50,8 @@ function ResourceAvailable() {
   const [filterOpen, setFilterOpen] = useState(false);
   const [confirmState, setConfirmState] = useState(null);
   const [logoutConfirmOpen, setLogoutConfirmOpen] = useState(false);
-  const adminName = localStorage.getItem("admin_name") || "Admin";
+  const session = getStoredSession();
+  const adminName = session.name || "Admin";
 
   useEffect(() => {
     async function fetchResources() {
